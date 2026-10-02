@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CampusPath – Career & Skills Blog for College Students</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1d4ed8;--blue-d:#1e3a8a;--blue-l:#eaf1ff;--bg:#fff;--text:#0f172a;--mute:#475569;--line:#dbe4f5;--card:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b1226;--text:#e8eefc;--mute:#9fb0d3;--line:#22305a;--card:#111b38;--blue-l:#16244a;--blue:#5b8cff}}
+:root[data-theme="dark"]{--bg:#0b1226;--text:#e8eefc;--mute:#9fb0d3;--line:#22305a;--card:#111b38;--blue-l:#16244a;--blue:#5b8cff}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--line)}
+.bar{max-width:1100px;margin:auto;padding:12px 20px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.25rem;color:var(--blue);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:4px;flex-wrap:wrap}
+nav a{text-decoration:none;padding:7px 12px;border-radius:8px;font-weight:600;font-size:.92rem;color:var(--mute)}
+nav a:hover{background:var(--blue-l)}
+nav a.on{background:var(--blue);color:#fff}
+.menu{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:7px 12px;font:inherit;font-weight:600;cursor:pointer}
+.search{max-width:1100px;margin:auto;padding:0 20px 12px}
+.search input{width:100%;padding:11px 16px;border:1.5px solid var(--line);border-radius:10px;font:inherit;background:var(--card);color:var(--text)}
+main{max-width:1100px;margin:auto;padding:28px 20px 56px}
+.hero{background:var(--blue);color:#fff;border-radius:16px;padding:48px 32px;margin-bottom:36px}
+.hero h1{font-size:clamp(1.8rem,5vw,2.8rem);line-height:1.15;margin:0 0 12px;max-width:640px}
+.hero p{margin:0 0 22px;max-width:560px;opacity:.92}
+.btn{display:inline-block;background:var(--blue);color:#fff;border:0;padding:10px 18px;border-radius:8px;font:inherit;font-weight:600;cursor:pointer;text-decoration:none}
+.btn:hover{background:var(--blue-d)}
+.hero .btn{background:#fff;color:var(--blue-d)}
+h2{font-size:1.5rem;margin:0 0 6px}
+.sub{color:var(--mute);margin:0 0 22px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:150px;object-fit:cover;display:block}
+.card div{padding:16px;display:flex;flex-direction:column;gap:8px;flex:1}
+.card h3{margin:0;font-size:1.05rem;line-height:1.3}
+.card p{margin:0;color:var(--mute);font-size:.93rem;flex:1}
+.tag{font-size:.78rem;font-weight:600;color:var(--blue)}
+.card .btn{align-self:flex-start;margin-top:4px;padding:8px 14px;font-size:.9rem}
+.empty{padding:32px;text-align:center;color:var(--mute);border:1px dashed var(--line);border-radius:12px}
+.box{max-width:640px}
+.box p{color:var(--mute)}
+.stats{display:flex;gap:28px;flex-wrap:wrap;margin:22px 0}
+.stats b{display:block;font-size:1.6rem;color:var(--blue)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:8px;font:inherit;background:var(--card);color:var(--text)}
+.ok{margin-top:14px;padding:12px 14px;background:var(--blue-l);border-radius:8px;font-weight:600}
+dialog{border:0;border-radius:14px;max-width:560px;width:calc(100% - 32px);padding:0;background:var(--card);color:var(--text)}
+dialog::backdrop{background:rgba(15,23,42,.6)}
+dialog img{width:100%;height:170px;object-fit:cover;display:block}
+.dlg{padding:20px 24px 24px}
+.dlg h3{margin:0 0 8px}
+.dlg li{margin-bottom:6px;color:var(--mute)}
+footer{border-top:1px solid var(--line);text-align:center;padding:22px;color:var(--mute);font-size:.9rem}
+@media (max-width:720px){
+.menu{display:block}
+nav{display:none;width:100%;flex-direction:column}
+nav.open{display:flex}
+.hero{padding:34px 22px}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="bar">
+    <a class="logo" href="#home">CampusPath</a>
+    <button class="menu" id="menu" aria-expanded="false" aria-controls="nav">Menu</button>
+    <nav id="nav" aria-label="Main">
+      <a href="#home">Home</a><a href="#career">Career Tips</a><a href="#skills">Skills</a><a href="#internships">Internships</a><a href="#resume">Resume Tips</a><a href="#about">About Us</a><a href="#contact">Contact Us</a>
+    </nav>
+  </div>
+  <div class="search"><input id="q" type="search" placeholder="Search articles, e.g. interview, Excel, internship" aria-label="Search articles"></div>
+</header>
+<main id="view"></main>
+<footer>© 2026 CampusPath. Made for students, by students.</footer>
+<dialog id="dlg"></dialog>
+
+<script>
+const palette={career:["#1d4ed8","#60a5fa"],skills:["#1e3a8a","#3b82f6"],internships:["#0369a1","#38bdf8"],resume:["#2563eb","#93c5fd"]};
+const icons={career:"M4 20V9l8-5 8 5v11h-5v-6H9v6z",skills:"M12 3l2.6 5.6 6.1.7-4.5 4.2 1.2 6L12 16.6 6.6 19.5l1.2-6L3.3 9.3l6.1-.7z",internships:"M4 8h16v11H4zM9 8V5h6v3",resume:"M6 3h9l4 4v14H6zM9 12h7M9 16h7"};
+function img(cat){const[a,b]=palette[cat];const s=`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 150'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='${a}'/><stop offset='1' stop-color='${b}'/></linearGradient></defs><rect width='400' height='150' fill='url(#g)'/><circle cx='340' cy='20' r='70' fill='#fff' opacity='.12'/><circle cx='50' cy='140' r='50' fill='#fff' opacity='.1'/><g transform='translate(176 51) scale(2)' fill='none' stroke='#fff' stroke-width='2' stroke-linejoin='round' stroke-linecap='round'><path d='${icons[cat]}'/></g></svg>`;return"data:image/svg+xml,"+encodeURIComponent(s)}
+const posts=[
+{c:"career",t:"How to choose a career path in your second year",d:"A simple 3-step method to compare options without feeling stuck.",p:["Write down 3 subjects you enjoy and 3 you are good at.","Talk to two seniors or alumni working in those fields.","Try one small project or short course before committing."]},
+{c:"career",t:"Ace your first interview: 7 questions to prepare",d:"Practice answers for the questions almost every recruiter asks.",p:["Tell me about yourself: keep it to 60 seconds.","Why this company? Mention one real product or project.","Prepare a story using the STAR method for teamwork and failure."]},
+{c:"career",t:"Build your LinkedIn profile before graduation",d:"A clear photo, headline and three projects are enough to start.",p:["Use a headline like 'CS student | Python | Seeking internships'.","Add projects with links and short results.","Connect with classmates, faculty and alumni."]},
+{c:"career",t:"Networking for shy students",d:"Small, genuine conversations beat handing out dozens of cards.",p:["Ask one question about someone's work.","Follow up within 24 hours with a thank-you note.","Join one club or community and show up regularly."]},
+{c:"skills",t:"5 skills every employer wants in 2026",d:"Communication, data basics, teamwork, AI tools and problem solving.",p:["Learn to write clearly and present ideas simply.","Get comfortable with spreadsheets and basic data analysis.","Use AI tools to speed up work, and always check the output."]},
+{c:"skills",t:"Learn Excel in 30 days",d:"A weekly plan from formulas to pivot tables and charts.",p:["Week 1: formulas, SUM, IF, VLOOKUP/XLOOKUP.","Week 2: cleaning data and formatting.","Week 3 and 4: pivot tables, charts and a mini project."]},
+{c:"skills",t:"Start coding with no experience",d:"Pick one language, build tiny projects and keep a daily streak.",p:["Start with Python or JavaScript.","Build a calculator, to-do list and quiz app.","Share your code on GitHub to build a portfolio."]},
+{c:"skills",t:"Public speaking: beat the nerves",d:"Simple habits that make presentations calmer and clearer.",p:["Practice out loud, not just in your head.","Use three key points per talk.","Slow down and pause between ideas."]},
+{c:"internships",t:"Where to find internships as a fresher",d:"College portals, LinkedIn, Internshala and direct emails all work.",p:["Check your placement cell and department notice boards.","Set job alerts on LinkedIn and Internshala.","Email small companies directly with a short pitch."]},
+{c:"internships",t:"Write a cold email that gets replies",d:"Keep it short, specific and easy to say yes to.",p:["Subject line: name the role and your college.","Two sentences on you, one on how you can help.","Attach your resume and offer a quick call."]},
+{c:"internships",t:"Make the most of your internship",d:"Ask questions, document your work and request feedback early.",p:["Keep a weekly log of tasks and results.","Ask for feedback in week two, not on the last day.","Request a recommendation letter before you leave."]},
+{c:"internships",t:"Remote vs on-site internships",d:"What each offers and how to pick the right one for you.",p:["Remote: flexible, but needs strong self-discipline.","On-site: better mentoring and networking.","Choose based on learning opportunities, not only the brand."]},
+{c:"resume",t:"One-page resume template for students",d:"A clean layout that recruiters can scan in under ten seconds.",p:["Order: contact, education, projects, skills, activities.","Use one simple font and consistent spacing.","Save as PDF with your name in the file name."]},
+{c:"resume",t:"Turn class projects into resume points",d:"Use action verbs and numbers to show real impact.",p:["Start with verbs such as built, led, analysed.","Add a number: 'Built a quiz app used by 120 classmates'.","Link to your code or demo."]},
+{c:"resume",t:"10 resume mistakes to avoid",d:"Typos, long paragraphs, vague skills and missing links top the list.",p:["Proofread twice and ask a friend to check.","Avoid photos and personal details unless required.","Tailor your resume to each role."]},
+{c:"resume",t:"Write a cover letter in 5 minutes",d:"Three short paragraphs: who you are, why them, how you help.",p:["Open with the role and a one-line hook.","Show one relevant achievement.","Close politely and ask for a conversation."]}
+];
+const titles={career:["Career Tips","Guidance to plan your path and prepare for interviews."],skills:["Skills","Build the skills that employers look for."],internships:["Internships","Find, apply for and get the most from internships."],resume:["Resume Tips","Create a resume that gets noticed."]};
+const view=document.getElementById("view"),q=document.getElementById("q"),dlg=document.getElementById("dlg"),nav=document.getElementById("nav");
+const esc=s=>s.replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+function cards(list){if(!list.length)return`<div class="empty">No articles found. Try a different word, like "resume" or "Excel".</div>`;
+return`<div class="grid">`+list.map(p=>{const i=posts.indexOf(p);return`<article class="card"><img src="${img(p.c)}" alt="" loading="lazy"><div><span class="tag">${titles[p.c][0]}</span><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><button class="btn" data-i="${i}">Read More</button></div></article>`}).join("")+`</div>`}
+const pages={
+home(){return`<section class="hero"><h1>Plan your career. Build your skills.</h1><p>Simple, practical guides on careers, skills, internships and resumes, written for college students.</p><a class="btn" href="#career">Start reading</a></section>
+<h2>Latest articles</h2><p class="sub">Fresh picks from every topic.</p>`+cards([posts[0],posts[4],posts[8],posts[12],posts[1],posts[5]])},
+about(){return`<div class="box"><h2>About Us</h2><p>CampusPath is a student-friendly blog that explains careers in plain language. We share tips on skills, internships and resumes so you can feel ready before graduation.</p><div class="stats"><div><b>16+</b>Guides</div><div><b>4</b>Topics</div><div><b>Free</b>Always</div></div><p>Our team includes recent graduates, mentors and hiring managers who want to make the first step into work easier.</p></div>`},
+contact(){return`<div class="box"><h2>Contact Us</h2><p>Have a question or want to suggest a topic? Send us a message.</p><form id="f" novalidate><label for="n">Name</label><input id="n" required><label for="e">Email</label><input id="e" type="email" required><label for="m">Message</label><textarea id="m" rows="5" required></textarea><p><button class="btn" type="submit">Send message</button></p><div id="s" role="status"></div></form></div>`}
+};
+function render(){const h=(location.hash||"#home").slice(1),term=q.value.trim().toLowerCase();
+nav.classList.remove("open");document.getElementById("menu").setAttribute("aria-expanded","false");
+nav.querySelectorAll("a").forEach(a=>a.classList.toggle("on",!term&&a.getAttribute("href")==="#"+h));
+if(term){const r=posts.filter(p=>(p.t+p.d+p.c+titles[p.c][0]).toLowerCase().includes(term));view.innerHTML=`<h2>Search results</h2><p class="sub">${r.length} result${r.length===1?"":"s"} for "${esc(q.value.trim())}"</p>`+cards(r);return}
+if(titles[h]){view.innerHTML=`<h2>${titles[h][0]}</h2><p class="sub">${titles[h][1]}</p>`+cards(posts.filter(p=>p.c===h))}
+else view.innerHTML=(pages[h]||pages.home)();
+if(h==="contact"){document.getElementById("f").onsubmit=e=>{e.preventDefault();const s=document.getElementById("s"),n=document.getElementById("n").value.trim(),m=document.getElementById("m").value.trim(),em=document.getElementById("e").value.trim();
+s.className=s.textContent="";if(!n||!m||!/^\S+@\S+\.\S+$/.test(em)){s.className="ok";s.textContent="Please enter your name, a valid email and a message.";return}
+s.className="ok";s.textContent="Thanks, "+n+". Your message was sent (demo).";e.target.reset()}}}
+view.addEventListener("click",e=>{const b=e.target.closest("[data-i]");if(!b)return;const p=posts[b.dataset.i];
+dlg.innerHTML=`<img src="${img(p.c)}" alt=""><div class="dlg"><span class="tag">${titles[p.c][0]}</span><h3>${esc(p.t)}</h3><p>${esc(p.d)}</p><ul>${p.p.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><button class="btn" id="x">Close</button></div>`;
+dlg.showModal();document.getElementById("x").onclick=()=>dlg.close()});
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+document.getElementById("menu").onclick=function(){const o=nav.classList.toggle("open");this.setAttribute("aria-expanded",o)};
+q.addEventListener("input",render);
+window.addEventListener("hashchange",()=>{q.value="";render();scrollTo(0,0)});
+render();
+</script>
+</body>
+</html>
